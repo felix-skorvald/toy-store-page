@@ -1,11 +1,12 @@
 import './App.css'
 import { Outlet } from 'react-router'
+import { Header} from './components/Header.jsx'
 
 function App() {
 
   return (
     <>
-      <header><h1>LOGOTYP</h1><nav>lol ol ol ol ol</nav><p>cart</p></header>
+      <Header />
       <Outlet />
       <footer>balbalbalbalabb</footer>
     </>

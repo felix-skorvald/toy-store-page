@@ -1,6 +1,8 @@
+import "./home.css";
+
 const Home = () => {
     return (
-        <div>
+        <div className="home">
             <h1>Welcome to the Toy Store</h1>
         </div>
     );
