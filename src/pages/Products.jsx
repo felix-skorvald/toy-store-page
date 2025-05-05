@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../data/crud.js";
 import { useProductsStore } from "../data/store.js";
+import ProductCard from "../components/ProductCard.jsx";
 import "./products.css";
 
 const Products = () => {
