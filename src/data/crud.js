@@ -20,8 +20,4 @@ async function getProducts(setProductList) {
     console.log(productList);
 }
 
-
-
-
-
-export { getProducts, getProductCategories };
+export { getProducts };
