@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getProducts } from "../data/crud.js";
+import { getProducts, getProductCategories } from "../data/crud.js";
 import { useProductsStore } from "../data/store.js";
 import ProductCard from "../components/ProductCard.jsx";
 import "./products.css";
@@ -13,6 +13,7 @@ const Products = () => {
     }, []);
 
     const handleTest = () => {
+        getProductCategories(products[1].id)
         console.log(products);
     };
 
@@ -22,12 +23,12 @@ const Products = () => {
             {/* detta kan va en egen komponent sen och filter en egen också maybe? */}
             <div className="product-grid">
                 {products.map((product) => (
-                    <div className="product-card" key={product.id}>
-                        <p>{product.name}</p>
-                        <p>{product.description}</p>
-                        <p></p>
-                        <p>{product.img}</p>
-                    </div>
+                    <ProductCard 
+                    className="product-card" 
+                    key={product.id} 
+                    product={product}
+                    />
+
                 ))}
             </div>
 

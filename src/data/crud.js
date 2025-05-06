@@ -1,6 +1,7 @@
 import {
     collection,
     getDocs,
+    getDoc,
     addDoc,
     doc,
     deleteDoc,
@@ -19,4 +20,8 @@ async function getProducts(setProductList) {
     console.log(productList);
 }
 
-export { getProducts };
+
+
+
+
+export { getProducts, getProductCategories };
