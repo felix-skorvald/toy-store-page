@@ -5,8 +5,10 @@ const Productcard = ({ product }) => (
         <div className="img-container">
             <img src={product.img} />
         </div>
-        <h4>{product.name}</h4>
-        <h3>{product.price} SEK</h3>
+        <div className="product-info">
+            <h4>{product.name}</h4>
+            <h3>{product.price} SEK</h3>
+        </div>
     </div>
 );
 
