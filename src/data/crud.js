@@ -20,4 +20,15 @@ async function getProducts(setProductList) {
     console.log(productList);
 }
 
-export { getProducts };
+async function getCategories(setCategoryList) {
+    const categoriesCollection = collection(db, "categories");
+    const categoriesSnapshot = await getDocs(categoriesCollection);
+    const categoryList = categoriesSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
+    setCategoryList(categoryList);
+    console.log(categoryList);
+}
+
+export { getProducts, getCategories };

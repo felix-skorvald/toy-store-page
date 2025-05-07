@@ -1,5 +1,3 @@
-import "./productCard.css";
-
 const Productcard = ({ product }) => (
     <div className="product-card" key={product.id}>
         <div className="img-container">

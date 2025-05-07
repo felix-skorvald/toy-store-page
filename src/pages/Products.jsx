@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getProducts } from "../data/crud.js";
 import { useProductsStore } from "../data/store.js";
 import ProductCard from "../components/ProductCard.jsx";
+import Filter from "../components/Filter.jsx";
+
 import "./products.css";
 
 const Products = () => {
@@ -18,7 +20,7 @@ const Products = () => {
 
     return (
         <div>
-            <div>filter:</div>
+            <Filter />
             {/* detta kan va en egen komponent sen och filter en egen också maybe? */}
             <div className="product-grid">
                 {products.map((product) => (
