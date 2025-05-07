@@ -3,6 +3,7 @@ import { create } from "zustand";
 const useProductsStore = create((set) => ({
     productList: [],
     categoryList: [],
+    productsToRender: [],
 
     setProductList: (list) =>
         set((state) => ({
@@ -12,6 +13,11 @@ const useProductsStore = create((set) => ({
     setCategoryList: (list) =>
         set((state) => ({
             categoryList: list,
+        })),
+
+    setProductsToRender: (list) =>
+        set((state) => ({
+            productsToRender: list,
         })),
 }));
 

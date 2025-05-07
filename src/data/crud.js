@@ -17,7 +17,6 @@ async function getProducts(setProductList) {
         ...doc.data(),
     }));
     setProductList(productList);
-    console.log(productList);
 }
 
 async function getCategories(setCategoryList) {
@@ -28,7 +27,6 @@ async function getCategories(setCategoryList) {
         ...doc.data(),
     }));
     setCategoryList(categoryList);
-    console.log(categoryList);
 }
 
 export { getProducts, getCategories };

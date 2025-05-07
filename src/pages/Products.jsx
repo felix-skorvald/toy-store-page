@@ -7,15 +7,16 @@ import Filter from "../components/Filter.jsx";
 import "./products.css";
 
 const Products = () => {
-    const products = useProductsStore((state) => state.productList);
+    const productsToRender = useProductsStore((state) => state.productsToRender);
     const setProductList = useProductsStore((state) => state.setProductList);
-
+    const setProductsToRender = useProductsStore((state) => state.setProductsToRender);
     useEffect(() => {
         getProducts(setProductList);
+        getProducts(setProductsToRender);
     }, []);
 
     const handleTest = () => {
-        console.log(products);
+        console.log(productsToRender);
     };
 
     return (
@@ -23,7 +24,7 @@ const Products = () => {
             <Filter />
             {/* detta kan va en egen komponent sen och filter en egen också maybe? */}
             <div className="product-grid">
-                {products.map((product) => (
+                {productsToRender.map((product) => (
                     <ProductCard
                         className="product-card"
                         key={product.id}
