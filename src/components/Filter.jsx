@@ -1,55 +1,34 @@
 import "./filter.css";
+import { sortProductsList, filterProducts } from "../data/filter-search.js"
 import { useProductsStore } from "../data/store.js";
-import { getCategories, getProducts } from "../data/crud.js";
-import { useEffect } from "react";
+import { getCategories } from "../data/crud.js";
+import { useEffect, useState } from "react";
 
 const Filter = () => {
     const categories = useProductsStore((state) => state.categoryList);
     const setCategoryList = useProductsStore((state) => state.setCategoryList);
-    const products = useProductsStore((state) => state.productList);
+    const allProducts = useProductsStore((state) => state.productList);
     const setProductsToRender = useProductsStore((state) => state.setProductsToRender);
-    const productsToRender = useProductsStore((state) => state.productsToRender);
-    let sortedList = null
+
+    const [selectedCategory, setSelectedCategory] = useState("alla");
+    const [currentSort, setCurrentSort] = useState("default");
 
     useEffect(() => {
         getCategories(setCategoryList);
     }, []);
 
+    useEffect(() => {
+        let processedList = filterProducts(allProducts, selectedCategory);
+        processedList = sortProductsList(processedList, currentSort);
+        setProductsToRender(processedList);
+    }, [allProducts, selectedCategory, currentSort, setProductsToRender]);
+
     const handleFilter = (e) => {
-        let listToFilter = products
-
-        if (sortedList) {
-            listToFilter = sortedList
-
-        }
-
-        if (e.target.value === "alla") {
-            setProductsToRender(products);
-            return;
-        }
-        const selectedCategoryId = e.target.value;
-        const filteredList = listToFilter.filter((p) =>
-            p.categories.includes(selectedCategoryId
-            ));
-        setProductsToRender(filteredList)
+        setSelectedCategory(e.target.value);
     }
 
     const handleSort = (e) => {
-        const selectedSort = e.target.value
-
-        if (selectedSort == "lowest") {
-            sortedList = [...productsToRender].sort((a, b) => a.price - b.price)
-        } else if (selectedSort == "highest") {
-            sortedList = [...productsToRender].sort((a, b) => b.price - a.price)
-        } else if (selectedSort == "alpha") {
-            sortedList = [...productsToRender].sort((a, b) => a.name.localeCompare(b.name))
-        } else {
-            sortedList = null
-            setProductsToRender(products)
-            return;
-        }
-
-        setProductsToRender(sortedList)
+        setCurrentSort(e.target.value)
     }
 
 
