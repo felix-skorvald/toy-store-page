@@ -6,6 +6,7 @@ import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import Cart from "./pages/Cart.jsx";
 import Products from "./pages/Products.jsx";
+import Login from "./pages/Login.jsx";
 
 const router = createHashRouter([
     {
@@ -15,6 +16,7 @@ const router = createHashRouter([
             { index: true, Component: Home },
             { path: "/cart", Component: Cart },
             { path: "/products", Component: Products },
+            { path: "/login", Component: Login },
         ],
     },
 ]);

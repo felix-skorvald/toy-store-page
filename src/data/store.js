@@ -21,4 +21,11 @@ const useProductsStore = create((set) => ({
         })),
 }));
 
-export { useProductsStore };
+const useAdminStore = create((set) => ({
+    isAdmin: false,
+    isEditing: false,
+
+    setIsAdmin: () => set((state) => ({ isAdmin: !state.isAdmin })),
+}))
+
+export { useProductsStore, useAdminStore };

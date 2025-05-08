@@ -12,6 +12,7 @@ const Filter = () => {
 
     const [selectedCategory, setSelectedCategory] = useState("alla");
     const [currentSort, setCurrentSort] = useState("default");
+    const [search, setSearch] = useState("")
 
     useEffect(() => {
         getCategories(setCategoryList);
@@ -21,7 +22,7 @@ const Filter = () => {
         let processedList = filterProducts(allProducts, selectedCategory);
         processedList = sortProductsList(processedList, currentSort);
         setProductsToRender(processedList);
-    }, [allProducts, selectedCategory, currentSort, setProductsToRender]);
+    }, [allProducts, selectedCategory, currentSort, categories, setProductsToRender]);
 
     const handleFilter = (e) => {
         setSelectedCategory(e.target.value);
@@ -36,7 +37,10 @@ const Filter = () => {
     return (
         <div className="filter">
             <div>
-                <input type="text" />
+                <input type="text"
+                    placeholder="Sök på produkt, beskrivning, kategori..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)} />
                 <button>Sök</button>
             </div>
             <div>

@@ -1,4 +1,6 @@
 const filterProducts = (products, categoryId) => {
+
+
     if (!categoryId || categoryId === "alla") {
         return [...products];
     }
