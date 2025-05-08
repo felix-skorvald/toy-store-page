@@ -1,39 +1,31 @@
-import { useEffect, useState } from "react";
-import { getProducts } from "../data/crud.js";
-import { useProductsStore } from "../data/store.js";
-import ProductCard from "../components/ProductCard.jsx";
+
 import Filter from "../components/Filter.jsx";
+import ProductGrid from "../components/ProductGrid.jsx";
+import ProductView from "../components/ProductView.jsx";
+import { useProductsStore } from "../data/store.js";
+import { useParams } from "react-router";
 
 import "./products.css";
 
 const Products = () => {
-    const productsToRender = useProductsStore((state) => state.productsToRender);
-    const setProductList = useProductsStore((state) => state.setProductList);
-    const setProductsToRender = useProductsStore((state) => state.setProductsToRender);
-    useEffect(() => {
-        getProducts(setProductList);
-        getProducts(setProductsToRender);
-    }, []);
+    const allProducts = useProductsStore((state) => state.productList);
+    const { productId } = useParams()
+    const activeProduct = allProducts.find(p => p.id === productId)
+    console.log(activeProduct)
 
-    const handleTest = () => {
-        console.log(productsToRender);
-    };
+    if (!activeProduct) {
+        return (
+            <div>
+                <Filter />
+                <ProductGrid />
+            </div>
+        )
+    }
+
 
     return (
         <div>
-            <Filter />
-            {/* detta kan va en egen komponent sen och filter en egen också maybe? */}
-            <div className="product-grid">
-                {productsToRender.map((product) => (
-                    <ProductCard
-                        className="product-card"
-                        key={product.id}
-                        product={product}
-                    />
-                ))}
-            </div>
-
-            <button onClick={() => handleTest()}>testa</button>
+            <ProductView product={activeProduct} />
         </div>
     );
 };
