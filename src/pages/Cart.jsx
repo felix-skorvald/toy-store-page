@@ -1,9 +1,20 @@
-const Home = () => {
+import { useCartStore } from "../data/store.js"
+
+const Cart = () => {
+
+    const cart = useCartStore((state) => state.cart);
     return (
         <div>
-            <h1>Welcome to the Toy Store</h1>
+            {cart.map(item => <div key={item.id}>
+                <div>
+                    <p>{item.name}</p>
+                    <p>{item.quantity}</p>
+                </div>
+                <p>{item.price * item.quantity}</p>
+            </div>
+            )}
         </div>
     );
 };
 
-export default Home;
+export default Cart;

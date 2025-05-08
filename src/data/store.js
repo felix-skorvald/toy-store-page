@@ -28,4 +28,26 @@ const useAdminStore = create((set) => ({
     setIsAdmin: () => set((state) => ({ isAdmin: !state.isAdmin })),
 }))
 
-export { useProductsStore, useAdminStore };
+const useCartStore = create((set) => ({
+    cart: [],
+
+    addCartItem: (item) =>
+        set((state) => ({
+            cart: [...state.cart, item]
+        })),
+    plusQuantity: (id) =>
+        set((state) => {
+            const index = state.cart.findIndex((item) => item.id === id);
+            if (index !== -1) {
+                state.cart[index].quantity++;
+                return { cart: [...state.cart] };
+            } else {
+                return { cart: [...state.cart, { id, quantity: 1 }] };
+            }
+        }),
+    emptyCart: () => set({ cart: [] }),
+
+
+}));
+
+export { useProductsStore, useAdminStore, useCartStore };
