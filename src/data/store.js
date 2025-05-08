@@ -25,7 +25,7 @@ const useAdminStore = create((set) => ({
     isAdmin: false,
     isEditing: false,
 
-    setIsAdmin: () => set((state) => ({ isAdmin: !state.isAdmin })),
+    toggleAdmin: () => set((state) => ({ isAdmin: !state.isAdmin })),
 }))
 
 const useCartStore = create((set) => ({
