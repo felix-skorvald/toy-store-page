@@ -1,5 +1,6 @@
 import "./header.css";
 import { useAdminStore } from "../data/store";
+import toyIcon from "../assets/ic_sharp-smart-toy.svg";
 import { NavLink } from "react-router";
 
 const Header = () => {
@@ -13,7 +14,8 @@ const Header = () => {
     return (
         <header className="header">
             <NavLink to="/">
-                <h1>TOYS M I</h1>
+                <h1>TOYS AM I</h1>
+                <img src={toyIcon} alt="TOYS AM I LOGOTYP" />
             </NavLink>
             <NavLink to="/products">Alla Produkter</NavLink>
             {!isAdmin ? (

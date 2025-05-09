@@ -11,7 +11,6 @@ const Products = () => {
     const allProducts = useProductsStore((state) => state.productList);
     const { productId } = useParams();
     const activeProduct = allProducts.find((p) => p.id === productId);
-    console.log(activeProduct);
 
     if (!activeProduct) {
         if (productId == "addnew") {

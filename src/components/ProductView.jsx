@@ -90,8 +90,8 @@ const ProductView = ({ product }) => {
                 </div>
                 <div>
                     <img src={product.img} alt={product.name} />
+                    <h3>Kategorier</h3>
                     <div className="category-container">
-                        <label>Kategorier</label>
                         {categories.map((category) => (
                             <div className="category-button" key={category.id}>
                                 <input
