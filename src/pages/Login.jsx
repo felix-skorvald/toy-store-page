@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import { useAdminStore } from '../data/store.js';
+import React, { useState } from "react";
+import { useAdminStore } from "../data/store.js";
 
 const Login = () => {
-    const toggleAdmin = useAdminStore(state => state.toggleAdmin)
+    const toggleAdmin = useAdminStore((state) => state.toggleAdmin);
     const isAdmin = useAdminStore((state) => state.isAdmin);
-    const [credentials, setCredentials] = useState({ username: '', password: '' });
+    const [credentials, setCredentials] = useState({
+        username: "",
+        password: "",
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -12,15 +15,14 @@ const Login = () => {
     };
 
     const handleLogin = (e) => {
-        const acceptedLogin = { username: "admin", password: "password" }
+        const acceptedLogin = { username: "admin", password: "password" };
         if (JSON.stringify(credentials) == JSON.stringify(acceptedLogin)) {
-            toggleAdmin()
-            console.log("du e admin")
-            console.log('Logging in with:', credentials);
-
+            toggleAdmin();
+            console.log("du e admin");
+            console.log("Logging in with:", credentials);
         } else {
-            console.log('Logging in with:', credentials);
-            console.log("FEL")
+            console.log("Logging in with:", credentials);
+            console.log("FEL");
         }
     };
 
@@ -49,9 +51,10 @@ const Login = () => {
                 />
             </div>
             <button onClick={handleLogin}>Logga in</button>
-
         </div>
-    ) : (<div>inloggad</div>)
+    ) : (
+        <div>inloggad</div>
+    );
 };
 
 export default Login;
