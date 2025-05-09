@@ -93,7 +93,7 @@ const ProductView = ({ product }) => {
                     <div className="category-container">
                         <label>Kategorier</label>
                         {categories.map((category) => (
-                            <div key={category.id}>
+                            <div className="category-button" key={category.id}>
                                 <input
                                     type="checkbox"
                                     id={`category-${category.id}`}

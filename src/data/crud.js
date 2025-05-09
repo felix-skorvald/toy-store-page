@@ -30,7 +30,7 @@ async function getCategories(setCategoryList) {
 }
 
 async function editProduct(productId, newInfo) {
-    const productRef = doc(db, "products", productId); // Referens till dokumentet
+    const productRef = doc(db, "products", productId);
 
     try {
         await updateDoc(productRef, newInfo); //Obs objekt!!!
@@ -40,26 +40,29 @@ async function editProduct(productId, newInfo) {
     }
 }
 
-async function sendMessage(draft, name, setMessages) {
+async function addNewProduct(newProduct) {
     try {
-        const messagesCollection = collection(db, "messages"); // Referera till "messages"-collectionen
+        const productCollection = collection(db, "products");
 
-        // Skapa ett nytt dokument i "messages"-collectionen
-        const messageObject = {
-            text: draft, // Innehållet i meddelandet
-            timestamp: Date.now(), // Tidsstämpel för när meddelandet skickades
-            sender: name,
-            receiver: "random",
-        };
-        const newMessageRef = await addDoc(messagesCollection, messageObject);
+        const newProductRef = await addDoc(productCollection, newProduct);
 
-        console.log("Meddelande skickat med ID: ", newMessageRef.id);
-        getMessages(setMessages);
-        return newMessageRef; // Returnera referensen till det nya dokumentet
+        console.log("Produkt uppladdad med ID: ", newProductRef.id);
     } catch (error) {
-        console.error("Fel vid skickande av meddelande: ", error);
-        throw error; // Kasta felet vidare för att hantera det högre upp i anropsstacken
+        console.error("Fel vid uppladdninging ", error);
+        throw error;
     }
 }
 
-export { getProducts, getCategories, editProduct };
+async function deleteMessage(messageId, setMessages) {
+    // Skapa referens till dokumentet som ska tas bort
+    const messageDocRef = doc(db, "messages", messageId);
+
+    // Ta bort dokumentet
+    await deleteDoc(messageDocRef);
+
+    console.log(`Dokumentet med ID ${messageId} har tagits bort.`);
+
+    getMessages(setMessages);
+}
+
+export { getProducts, getCategories, editProduct, addNewProduct };
