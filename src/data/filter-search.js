@@ -1,10 +1,41 @@
-const filterProducts = (products, categoryId) => {
+const filterProducts = (
+    allProducts,
+    selectedCategoryId,
+    searchTerm,
+    allCategoriesList
+) => {
+    let processedList = [...allProducts];
 
-
-    if (!categoryId || categoryId === "alla") {
-        return [...products];
+    if (selectedCategoryId && selectedCategoryId !== "alla") {
+        processedList = processedList.filter(product =>
+            product.categories.includes(selectedCategoryId)
+        );
     }
-    return products.filter(p => p.categories.includes(categoryId));
+
+    if (searchTerm && searchTerm.trim() !== "") {
+        const lowerSearchTerm = searchTerm.toLowerCase().trim();
+
+        const matchingCategoryIdsFromSearch = allCategoriesList
+            .filter(cat => cat.name.toLowerCase().includes(lowerSearchTerm))
+            .map(cat => cat.id);
+
+        processedList = processedList.filter(product => {
+
+            const nameMatches = product.name.toLowerCase().includes(lowerSearchTerm);
+
+            const descriptionMatches = product.description
+                ? product.description.toLowerCase().includes(lowerSearchTerm)
+                : false;
+
+            const categoryNameMatches = product.categories.some(prodCatId =>
+                matchingCategoryIdsFromSearch.includes(prodCatId)
+            );
+
+            return nameMatches || descriptionMatches || categoryNameMatches;
+        });
+    }
+
+    return processedList;
 };
 
 const sortProductsList = (products, sortType) => {

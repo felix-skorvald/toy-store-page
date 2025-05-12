@@ -19,10 +19,10 @@ const Filter = () => {
     }, []);
 
     useEffect(() => {
-        let processedList = filterProducts(allProducts, selectedCategory);
+        let processedList = filterProducts(allProducts, selectedCategory, search, categories);
         processedList = sortProductsList(processedList, currentSort);
         setProductsToRender(processedList);
-    }, [allProducts, selectedCategory, currentSort, categories, setProductsToRender]);
+    }, [allProducts, selectedCategory, currentSort, categories, setProductsToRender, search]);
 
     const handleFilter = (e) => {
         setSelectedCategory(e.target.value);
