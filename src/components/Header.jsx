@@ -1,6 +1,6 @@
 import "./header.css";
 import { useAdminStore } from "../data/store";
-import toyIcon from "../assets/ic_sharp-smart-toy.svg";
+import toyIcon from "../assets/mdi_child-toy.svg";
 import cartIcon from "../assets/solar_cart-bold.svg"
 import { NavLink } from "react-router";
 
