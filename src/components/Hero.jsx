@@ -1,9 +1,11 @@
+import { NavLink } from "react-router";
+
 const Hero = () => {
     return (
         <div className="hero">
-            <button onClick={() => alert("Explore our collection!")}>
+            <NavLink to="/products">
                 KOLLA IN VÅRA LEKSAKER!
-            </button>
+            </NavLink>
         </div>
     );
 };

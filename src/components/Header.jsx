@@ -1,6 +1,7 @@
 import "./header.css";
 import { useAdminStore } from "../data/store";
 import toyIcon from "../assets/ic_sharp-smart-toy.svg";
+import cartIcon from "../assets/solar_cart-bold.svg"
 import { NavLink } from "react-router";
 
 const Header = () => {
@@ -17,14 +18,14 @@ const Header = () => {
                 <h1>TOYS AM I</h1>
                 <img src={toyIcon} alt="TOYS AM I LOGOTYP" />
             </NavLink>
-            <NavLink to="/products">Alla Produkter</NavLink>
+            <NavLink to="/products">Alla Leksaker</NavLink>
             {!isAdmin ? (
                 ""
             ) : (
                 <NavLink to="/products/addnew">Lägg till ny produkt</NavLink>
             )}
             {!isAdmin ? (
-                <NavLink to="/cart">Cart</NavLink>
+                <NavLink to="/cart"><img src={cartIcon} alt="cart" /></NavLink>
             ) : (
                 <button onClick={handleLogOut}>Logga ut</button>
             )}

@@ -1,9 +1,12 @@
 .filter {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 2 rem;
+    background-image: url(https://domf5oio6qrcr.cloudfront.net/medialibrary/10992/b8b237ee-7cfe-4eab-b79b-dac389707899.jpg);
+    background-position: center;
+    background-size: cover;
+    padding: 1rem;
 
     div {
         display: flex;
@@ -15,32 +18,43 @@
     input {
 
         width: 100%;
-        padding: 15px;
+        padding: 11px;
         margin: 5px 0;
         border: 1px solid #ccc;
         border-radius: 10px;
-        margin-right: 2rem;
+        margin-right: 0.5rem;
+        font-size: larger;
     }
 
     select {
         width: 100%;
-        padding: 15px;
+        padding: 11px;
         border: 1px solid #ccc;
         border-radius: 10px;
+        font-size: large;
     }
 
     button {
         padding: 10px 20px;
         cursor: pointer;
         font-size: larger;
+        font-weight: bold;
         border-radius: 10px;
-        background-color: rgb(255, 140, 217);
-        border: 3px solid #ccc;
-        transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        background-color: #004ebc;
+        color: #ffff;
+        border: 3px solid #ffffff;
+        transition: background-color 0.2s ease-in-out;
 
         &:hover {
-            background-color: #ff2bdc;
-            transform: scale(1.05);
+            background-color: #0415ad;
         }
+    }
+}
+
+
+@media screen and (max-width: 800px) {
+    .filter {
+        flex-direction: column;
+
     }
 }

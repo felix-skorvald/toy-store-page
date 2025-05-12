@@ -2,12 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #004ebc;
 
     .hero {
-        min-height: 30%;
+        min-height: 400px;
         width: 100%;
         background-image: url("https://i0.wp.com/bethanyinstitutions.edu.in/wp-content/uploads/2024/09/Benefits-of-outdoor-play-for-children.png?fit=2200%2C900&ssl=1");
         background-size: cover;
@@ -15,22 +14,82 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        button {
-            font-size: xx-large;
+
+        a {
+            text-decoration: none;
+            font-size: x-large;
+            font-weight: bold;
             padding: 1rem;
-            border-radius: 10px;
+            border: 3px solid #ffffff;
+            border-radius: 10rem;
             color: #ffffff;
             background-color: #004ebc;
+            transition: transform 0.3s;
+
+            &:hover {
+                transform: scale(1.1);
+
+            }
         }
     }
 
-    .home-categories {
-        display: flex;
-        gap: 1rem;
-        .category {
-            background-color: #ffffff;
-            padding: 1rem;
-            border-radius: 10px;
-        }
+    h2 {
+        color: #fff;
+        font-size: x-large;
+        margin: 1rem;
+        font-weight: bold;
     }
+
+    .spotlight {
+        display: flex;
+        width: 100%;
+        gap: 2rem;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .home-products {
+            position: relative;
+            display: inline-block;
+            flex-grow: 1;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 10px;
+            transition: 0.3s;
+            background-color: #ffffff;
+            margin: 1rem;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: scale-down
+            }
+
+            h2 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: rgb(0, 0, 0);
+                font-size: 1.5rem;
+                text-align: center;
+                opacity: 0;
+            }
+
+            &:hover img {
+                filter: brightness(0) invert(1);
+
+            }
+
+            &:hover h2 {
+                opacity: 1;
+            }
+
+            &:hover {
+                transform: scale(1.02);
+            }
+        }
+
+    }
+
 }

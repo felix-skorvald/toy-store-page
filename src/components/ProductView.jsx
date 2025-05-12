@@ -43,12 +43,18 @@ const ProductView = ({ product }) => {
     };
     return !isAdmin ? (
         <div className="product-view">
-            <div>
-                <img src={product.img} alt={product.name} />
-                <h2>{product.name}</h2>
-                <p>{product.description}</p>
-                <p> {product.price}:-</p>
-                <button>Lägg till i varukorgen</button>
+            <div className="product-container">
+                <div>
+                    <img src={product.img} alt={product.name} />
+                    <p>{product.description}</p>
+
+                </div>
+                <div>
+                    <h2>{product.name}</h2>
+                    <h3 className="price"> {product.price}:-</h3>
+                    <button>Lägg till i varukorgen</button>
+
+                </div>
             </div>
         </div>
     ) : (
@@ -56,6 +62,7 @@ const ProductView = ({ product }) => {
             <div className="product-container">
                 <div>
                     <h2>Redigera produkt</h2>
+                    <img src={product.img} alt={product.name} />
                     <label htmlFor="name">Title</label>
                     <input
                         type="text"
@@ -89,7 +96,6 @@ const ProductView = ({ product }) => {
                     />
                 </div>
                 <div>
-                    <img src={product.img} alt={product.name} />
                     <h3>Kategorier</h3>
                     <div className="category-container">
                         {categories.map((category) => (

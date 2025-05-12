@@ -1,9 +1,12 @@
 header {
-    padding: 1rem;
+    padding: 0.5rem;
     background-color: #004ebc;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 
     h1 {
         font-family: "Micro 5", sans-serif;
@@ -14,6 +17,14 @@ header {
 
     a {
         text-decoration: none;
+        color: #ffff;
+        font-size: larger;
+        font-weight: bold;
+        transition: transform 0.3s;
+
+        &:hover {
+            transform: scale(1.1);
+        }
     }
 
     .logo {
@@ -21,9 +32,19 @@ header {
         display: flex;
         gap: 1rem;
         transition: 0.2s;
-        &:hover {
-            cursor: pointer;
-            transform: rotate(-180deg);
+
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .logo {
+        &>img {
+            transform: scale(1.5);
+        }
+
+        &>h1 {
+            display: none;
+            background-color: hotpink;
         }
     }
 }
