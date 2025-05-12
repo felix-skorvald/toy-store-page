@@ -18,7 +18,7 @@ const Header = () => {
                 <h1>TOYS AM I</h1>
                 <img src={toyIcon} alt="TOYS AM I LOGOTYP" />
             </NavLink>
-            <NavLink to="/products">Alla Leksaker</NavLink>
+            <NavLink to="/products" className="all-toys">Alla Leksaker</NavLink>
             {!isAdmin ? (
                 ""
             ) : (

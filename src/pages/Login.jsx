@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAdminStore } from "../data/store.js";
+import "./login.css"
 
 const Login = () => {
     const toggleAdmin = useAdminStore((state) => state.toggleAdmin);
@@ -27,33 +28,37 @@ const Login = () => {
     };
 
     return !isAdmin ? (
-        <div>
-            <h2>Logga in</h2>
+        <div className="login">
+            <div className="login-container">
+                <h2>Logga in</h2>
 
-            <div>
-                <label htmlFor="username">Användarnamn:</label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    value={credentials.username}
-                    onChange={handleChange}
-                />
+                <div>
+                    <label htmlFor="username">Användarnamn:</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        value={credentials.username}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Lösenord:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={credentials.password}
+                        onChange={handleChange}
+                    />
+                </div>
+                <button onClick={handleLogin}>Logga in</button>
+
+
             </div>
-            <div>
-                <label htmlFor="password">Lösenord:</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={credentials.password}
-                    onChange={handleChange}
-                />
-            </div>
-            <button onClick={handleLogin}>Logga in</button>
         </div>
     ) : (
-        <div>inloggad</div>
+        <div className="login">inloggad</div>
     );
 };
 

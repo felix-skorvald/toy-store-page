@@ -34,7 +34,7 @@ const Productcard = ({ product }) => {
             </div>
             <div className="product-info">
                 <NavLink to={`/products/${product.id}`}><h4>{product.name}</h4></NavLink>
-                <h3>{product.price} SEK</h3>
+                <h3 className="price">{product.price} SEK</h3>
                 {!isAdmin ? (
                     <button onClick={handleAdd}>Lägg till</button>
                 ) : (<div>

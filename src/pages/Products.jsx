@@ -21,7 +21,7 @@ const Products = () => {
             );
         } else {
             return (
-                <div>
+                <div className="products">
                     <Filter />
                     <ProductGrid />
                 </div>

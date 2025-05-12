@@ -46,4 +46,8 @@ header {
             background-color: hotpink;
         }
     }
+
+    .all-toys {
+        display: none;
+    }
 }
