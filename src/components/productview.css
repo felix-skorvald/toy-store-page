@@ -24,6 +24,9 @@
             justify-content: center;
             input {
                 margin-bottom: 1rem;
+                padding: 0.5rem;
+                border-radius: 5px;
+                border: 3px solid #000000;
             }
         }
         button {
@@ -44,6 +47,7 @@
         label {
             font-weight: bold;
         }
+
         .category-container {
             padding: 1rem;
             border-radius: 10px;

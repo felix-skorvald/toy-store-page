@@ -2,7 +2,35 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 100vh;
     background-color: #004ebc;
+
+    .hero {
+        min-height: 30%;
+        width: 100%;
+        background-image: url("https://i0.wp.com/bethanyinstitutions.edu.in/wp-content/uploads/2024/09/Benefits-of-outdoor-play-for-children.png?fit=2200%2C900&ssl=1");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        button {
+            font-size: xx-large;
+            padding: 1rem;
+            border-radius: 10px;
+            color: #ffffff;
+            background-color: #004ebc;
+        }
+    }
+
+    .home-categories {
+        display: flex;
+        gap: 1rem;
+        .category {
+            background-color: #ffffff;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+    }
 }

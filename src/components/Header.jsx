@@ -13,7 +13,7 @@ const Header = () => {
 
     return (
         <header className="header">
-            <NavLink to="/">
+            <NavLink to="/" className="logo">
                 <h1>TOYS AM I</h1>
                 <img src={toyIcon} alt="TOYS AM I LOGOTYP" />
             </NavLink>

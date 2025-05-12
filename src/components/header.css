@@ -15,4 +15,15 @@ header {
     a {
         text-decoration: none;
     }
+
+    .logo {
+        font-size: larger;
+        display: flex;
+        gap: 1rem;
+        transition: 0.2s;
+        &:hover {
+            cursor: pointer;
+            transform: rotate(-180deg);
+        }
+    }
 }
