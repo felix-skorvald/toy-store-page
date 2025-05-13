@@ -3,15 +3,15 @@ import Hero from "../components/Hero.jsx";
 import ProductGrid from "../components/ProductGrid.jsx";
 import Filter from "../components/Filter.jsx";
 import { useEffect } from "react";
+import { NavLink } from "react-router";
 import { getCategories, getProducts } from "../data/crud.js";
 import { useProductsStore } from "../data/store.js";
 
 const Home = () => {
     const setProductList = useProductsStore((state) => state.setProductList);
-    const products = useProductsStore((state) => state.productList)
+    const products = useProductsStore((state) => state.productList);
     useEffect(() => {
         getProducts(setProductList);
-
     }, []);
 
     return (
@@ -21,13 +21,12 @@ const Home = () => {
             <div className="spotlight">
                 {products.slice(0, 4).map((product) => (
                     <div className="home-products" key={product.id}>
-                        <img src={product.img} alt={product.name} />
-                        <h2>{product.name}</h2>
-
-
+                        <NavLink to={`/products/${product.id}`}>
+                            <img src={product.img} alt={product.name} />
+                            <h2>{product.name}</h2>
+                        </NavLink>
                     </div>
                 ))}
-
             </div>
         </div>
     );

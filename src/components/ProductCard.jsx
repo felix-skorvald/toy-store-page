@@ -1,7 +1,6 @@
 import { NavLink } from "react-router";
-import { useCartStore } from "../data/store.js"
-import { useAdminStore } from "../data/store.js"
-
+import { useCartStore } from "../data/store.js";
+import { useAdminStore } from "../data/store.js";
 
 const Productcard = ({ product }) => {
     const cart = useCartStore((state) => state.cart);
@@ -9,41 +8,47 @@ const Productcard = ({ product }) => {
     const plusQuantity = useCartStore((state) => state.plusQuantity);
     const isAdmin = useAdminStore((state) => state.isAdmin);
 
-
-
     const handleAdd = () => {
-
-        let cartItem = { id: product.id, name: product.name, quantity: 1, price: product.price }
+        let cartItem = {
+            id: product.id,
+            name: product.name,
+            quantity: 1,
+            price: product.price,
+        };
         if (cart) {
-            const foundItem = cart.find(item => item.id == product.id)
+            const foundItem = cart.find((item) => item.id == product.id);
             if (foundItem) {
-                plusQuantity(product.id)
+                plusQuantity(product.id);
 
                 return;
             }
         }
 
-        addCartItem(cartItem)
-    }
-
+        addCartItem(cartItem);
+    };
 
     return (
         <div className="product-card" key={product.id}>
             <div className="img-container">
-                <img src={product.img} />
+                <NavLink to={`/products/${product.id}`}>
+                    <img src={product.img} />
+                </NavLink>
             </div>
             <div className="product-info">
-                <NavLink to={`/products/${product.id}`}><h4>{product.name}</h4></NavLink>
+                <NavLink to={`/products/${product.id}`}>
+                    <h4>{product.name}</h4>
+                </NavLink>
                 <h3 className="price">{product.price} SEK</h3>
                 {!isAdmin ? (
                     <button onClick={handleAdd}>Lägg till</button>
-                ) : (<div>
-                    <button>Ta bort</button>
-                </div>)
-                }
+                ) : (
+                    <div>
+                        <button>Ta bort</button>
+                    </div>
+                )}
             </div>
         </div>
-    )
+    );
 };
 
 export default Productcard;

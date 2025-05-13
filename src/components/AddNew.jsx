@@ -23,6 +23,7 @@ const AddNew = () => {
     };
 
     const handleCategoryChange = (e) => {
+        // GÖR OM då vi inte behöver liksom se föregående....
         const { checked, value } = e.target;
         setNewProduct((prev) => ({
             ...prev,
@@ -86,7 +87,7 @@ const AddNew = () => {
                             <div className="category-button" key={category.id}>
                                 <input
                                     type="checkbox"
-                                    id={`category-${category.id}`}
+                                    id={category.id}
                                     value={category.id}
                                     onChange={handleCategoryChange}
                                 />

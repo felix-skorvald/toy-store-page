@@ -47,13 +47,11 @@ const ProductView = ({ product }) => {
                 <div>
                     <img src={product.img} alt={product.name} />
                     <p>{product.description}</p>
-
                 </div>
                 <div>
                     <h2>{product.name}</h2>
                     <h3 className="price"> {product.price}:-</h3>
                     <button>Lägg till i varukorgen</button>
-
                 </div>
             </div>
         </div>
@@ -102,7 +100,7 @@ const ProductView = ({ product }) => {
                             <div className="category-button" key={category.id}>
                                 <input
                                     type="checkbox"
-                                    id={`category-${category.id}`}
+                                    id={category.id}
                                     value={category.id}
                                     checked={
                                         edited.categories?.includes(
@@ -111,7 +109,7 @@ const ProductView = ({ product }) => {
                                     }
                                     onChange={handleCategoryChange}
                                 />
-                                <label htmlFor={`category-${category.id}`}>
+                                <label htmlFor={category.id}>
                                     {category.name}
                                 </label>
                             </div>
