@@ -53,16 +53,13 @@ async function addNewProduct(newProduct) {
     }
 }
 
-async function deleteMessage(messageId, setMessages) {
-    // Skapa referens till dokumentet som ska tas bort
-    const messageDocRef = doc(db, "messages", messageId);
+async function deleteProduct(productId, setProductList) {
+    const productRef = doc(db, "products", productId);
 
-    // Ta bort dokumentet
-    await deleteDoc(messageDocRef);
+    await deleteDoc(productRef);
 
-    console.log(`Dokumentet med ID ${messageId} har tagits bort.`);
-
-    getMessages(setMessages);
+    console.log(`Dokumentet med ID ${productId} har tagits bort.`);
+    getProducts(setProductList);
 }
 
-export { getProducts, getCategories, editProduct, addNewProduct };
+export { getProducts, getCategories, editProduct, addNewProduct, deleteProduct };

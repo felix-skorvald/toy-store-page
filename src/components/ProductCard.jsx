@@ -1,6 +1,8 @@
 import { NavLink } from "react-router";
 import { useCartStore } from "../data/store.js";
 import { useAdminStore } from "../data/store.js";
+import { useProductsStore } from "../data/store.js";
+import { deleteProduct } from "../data/crud.js"
 import penIcon from "../assets/solar_pen-bold.svg";
 
 const Productcard = ({ product }) => {
@@ -8,6 +10,7 @@ const Productcard = ({ product }) => {
     const addCartItem = useCartStore((state) => state.addCartItem);
     const plusQuantity = useCartStore((state) => state.plusQuantity);
     const isAdmin = useAdminStore((state) => state.isAdmin);
+    const setProductList = useProductsStore((state) => state.setProductList);
 
     const handleAdd = () => {
         let cartItem = {
@@ -45,7 +48,7 @@ const Productcard = ({ product }) => {
                     <button onClick={handleAdd}>Lägg till</button>
                 ) : (
                     <div>
-                        <button>Ta bort</button>
+                        <button onClick={() => deleteProduct(product.id, setProductList)}>Ta bort</button>
                     </div>
                 )}
             </div>

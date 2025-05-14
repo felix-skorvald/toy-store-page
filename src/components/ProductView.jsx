@@ -2,11 +2,15 @@ import "./productview.css";
 import { useAdminStore } from "../data/store.js";
 import { editProduct } from "../data/crud.js";
 import { useProductsStore } from "../data/store.js";
+import { useCartStore } from "../data/store.js";
 import { useState } from "react";
 
 const ProductView = ({ product }) => {
     const isAdmin = useAdminStore((state) => state.isAdmin);
     const categories = useProductsStore((state) => state.categoryList);
+    const cart = useCartStore((state) => state.cart);
+    const addCartItem = useCartStore((state) => state.addCartItem);
+    const plusQuantity = useCartStore((state) => state.plusQuantity);
 
     const [edited, setEdited] = useState({
         name: product.name,
@@ -41,6 +45,27 @@ const ProductView = ({ product }) => {
         editProduct(product.id, edited);
         console.log("Product updated:", edited);
     };
+
+
+    const handleAdd = () => {
+        let cartItem = {
+            id: product.id,
+            name: product.name,
+            quantity: 1,
+            price: product.price,
+        };
+        if (cart) {
+            const foundItem = cart.find((item) => item.id == product.id);
+            if (foundItem) {
+                plusQuantity(product.id);
+
+                return;
+            }
+        }
+
+        addCartItem(cartItem);
+    };
+
     return !isAdmin ? (
         <div className="product-view">
             <div className="product-container">
@@ -51,7 +76,7 @@ const ProductView = ({ product }) => {
                 <div>
                     <h2>{product.name}</h2>
                     <h3 className="price"> {product.price}:-</h3>
-                    <button>Lägg till i varukorgen</button>
+                    <button onClick={handleAdd}>Lägg till i varukorgen</button>
                 </div>
             </div>
         </div>
