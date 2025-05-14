@@ -3,6 +3,9 @@ import { useProductsStore } from "../data/store.js";
 import { addNewProduct } from "../data/crud.js";
 import { useState } from "react";
 
+import { addNewValidation } from "../data/validation.js";
+
+
 const AddNew = () => {
     const isAdmin = useAdminStore((state) => state.isAdmin);
     const categories = useProductsStore((state) => state.categoryList);
@@ -13,6 +16,8 @@ const AddNew = () => {
         categories: [],
         price: null,
     });
+
+    const [errors, setErrors] = useState({});
 
     const handleInputChange = (e) => {
         const { id, value } = e.target;
@@ -33,6 +38,27 @@ const AddNew = () => {
     };
 
     const handleSave = () => {
+        const productToValidate = {
+            title: newProduct.name,
+            img: newProduct.img,
+            description: newProduct.description,
+            price: Number(newProduct.price),
+        };
+
+        const { error } = addNewValidation.validate(productToValidate, {
+            abortEarly: false,
+        });
+
+        if (error) {
+            const validationErrors = {};
+            error.details.forEach((detail) => {
+                validationErrors[detail.path[0]] = detail.message;
+            });
+            setErrors(validationErrors);
+            return;
+        }
+
+        setErrors({});
         console.log("Product added:", newProduct);
         addNewProduct(newProduct);
     };
@@ -47,21 +73,25 @@ const AddNew = () => {
             <div className="product-container">
                 <div>
                     <h2>LäggTill Ny</h2>
-                    <label htmlFor="name">Title</label>
+                    <label htmlFor="name">Titel</label>
                     <input
                         type="text"
                         id="name"
                         value={newProduct.name}
                         onChange={handleInputChange}
+                        className={errors.title ? "error-border" : ""}
                     />
+                    {errors.title && <p className="error">{errors.title}</p>}
 
-                    <label htmlFor="img">Image URL</label>
+                    <label htmlFor="img">Bild-URL</label>
                     <input
                         type="text"
                         id="img"
                         value={newProduct.img}
                         onChange={handleInputChange}
+                        className={errors.img ? "error-border" : ""}
                     />
+                    {errors.img && <p className="error">{errors.img}</p>}
 
                     <label htmlFor="description">Beskrivning</label>
                     <input
@@ -69,7 +99,9 @@ const AddNew = () => {
                         id="description"
                         value={newProduct.description}
                         onChange={handleInputChange}
+                        className={errors.description ? "error-border" : ""}
                     />
+                    {errors.description && <p className="error">{errors.description}</p>}
 
                     <label htmlFor="price">Pris</label>
                     <input
@@ -77,7 +109,9 @@ const AddNew = () => {
                         id="price"
                         value={newProduct.price !== null ? newProduct.price : ""}
                         onChange={handleInputChange}
+                        className={errors.price ? "error-border" : ""}
                     />
+                    {errors.price && <p className="error">{errors.price}</p>}
                 </div>
                 <div>
                     <div className="category-container">
