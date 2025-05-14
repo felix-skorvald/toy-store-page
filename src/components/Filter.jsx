@@ -61,9 +61,10 @@ const Filter = () => {
                         Sortera
                     </option>
                     <option value="default">Populärast</option>
-                    <option value="lowest">Lägsta pris</option>
-                    <option value="highest">Högsta pris</option>
-                    <option value="alpha">Bokstavsordning</option>
+                    <option value="lowest">Pris stigande</option>
+                    <option value="highest">Pris fallande</option>
+                    <option value="alpha">A-Ö</option>
+                    <option value="zeta">Ö-A</option>
 
                 </select>
 

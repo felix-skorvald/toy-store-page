@@ -1,6 +1,7 @@
 import { NavLink } from "react-router";
 import { useCartStore } from "../data/store.js";
 import { useAdminStore } from "../data/store.js";
+import penIcon from "../assets/solar_pen-bold.svg";
 
 const Productcard = ({ product }) => {
     const cart = useCartStore((state) => state.cart);
@@ -30,6 +31,7 @@ const Productcard = ({ product }) => {
     return (
         <div className="product-card" key={product.id}>
             <div className="img-container">
+                {isAdmin ? <img src={penIcon} alt="Edit icon" className="edit-icon" /> : ""}
                 <NavLink to={`/products/${product.id}`}>
                     <img src={product.img} />
                 </NavLink>

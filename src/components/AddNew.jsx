@@ -11,7 +11,7 @@ const AddNew = () => {
         img: "",
         description: "",
         categories: [],
-        price: 0,
+        price: null,
     });
 
     const handleInputChange = (e) => {
@@ -23,7 +23,6 @@ const AddNew = () => {
     };
 
     const handleCategoryChange = (e) => {
-        // GÖR OM då vi inte behöver liksom se föregående....
         const { checked, value } = e.target;
         setNewProduct((prev) => ({
             ...prev,
@@ -74,9 +73,9 @@ const AddNew = () => {
 
                     <label htmlFor="price">Pris</label>
                     <input
-                        type="text"
+                        type="number"
                         id="price"
-                        value={newProduct.price}
+                        value={newProduct.price !== null ? newProduct.price : ""}
                         onChange={handleInputChange}
                     />
                 </div>
@@ -91,7 +90,7 @@ const AddNew = () => {
                                     value={category.id}
                                     onChange={handleCategoryChange}
                                 />
-                                <label htmlFor={`category-${category.id}`}>
+                                <label htmlFor={category.id}>
                                     {category.name}
                                 </label>
                             </div>

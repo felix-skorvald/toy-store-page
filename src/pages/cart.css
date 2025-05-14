@@ -10,10 +10,31 @@
         border-radius: 10px;
         background-color: #ffff;
 
+        h2 {
+            margin-bottom: 1rem;
+            font-size: xx-large;
+        }
+
         .cart-item {
             margin-bottom: 1rem;
             display: flex;
             justify-content: space-between;
+            border-bottom: 1px solid grey;
+        }
+
+        button {
+
+            background-color: #004ebc;
+            color: #ffffff;
+            font-size: large;
+            font-weight: bold;
+            border: none;
+            border-radius: 1rem;
+            padding: 1rem;
+
+            &:hover {
+                background-color: #003399;
+            }
         }
     }
 }

@@ -48,6 +48,8 @@ const sortProductsList = (products, sortType) => {
             return listToSort.sort((a, b) => b.price - a.price);
         case "alpha":
             return listToSort.sort((a, b) => a.name.localeCompare(b.name));
+        case "zeta":
+            return listToSort.sort((a, b) => b.name.localeCompare(a.name));
         case "default":
         default:
             return listToSort;

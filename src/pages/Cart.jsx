@@ -3,6 +3,7 @@ import "./cart.css"
 const Cart = () => {
 
     const cart = useCartStore((state) => state.cart);
+    const emptyCart = useCartStore((state) => state.emptyCart)
     return (
         <div className="cart">
             <div className="cart-container">
@@ -16,8 +17,8 @@ const Cart = () => {
                 </div>
                 )}
                 <div>
-                    <h2>totalt:9999</h2>
-                    <button>Betala</button>
+                    <h2>TOTALT: {cart.reduce((total, item) => total + (item.price * item.quantity), 0)} SEK</h2>
+                    <button onClick={() => emptyCart()}>BETALA</button>
                 </div>
             </div>
         </div>

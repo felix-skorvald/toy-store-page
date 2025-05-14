@@ -31,6 +31,19 @@
             background-color: white;
         }
 
+        .img-container {
+            position: relative;
+        }
+
+        .edit-icon {
+            position: absolute;
+            width: 38px;
+            background-color: transparent;
+            height: 38px;
+            right: 0;
+
+        }
+
         .product-info {
             display: flex;
             flex-direction: column;
