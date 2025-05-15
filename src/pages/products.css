@@ -62,7 +62,8 @@
             }
 
             .price {
-                font-weight: 400;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
                 color: rgb(231, 4, 4);
                 font-size: x-large;
             }

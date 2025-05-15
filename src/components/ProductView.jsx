@@ -12,6 +12,7 @@ const ProductView = ({ product }) => {
     const cart = useCartStore((state) => state.cart);
     const addCartItem = useCartStore((state) => state.addCartItem);
     const plusQuantity = useCartStore((state) => state.plusQuantity);
+    const inCart = cart ? cart.some(item => item.id == product.id) : false;
 
     const [edited, setEdited] = useState({
         name: product.name,
@@ -100,7 +101,7 @@ const ProductView = ({ product }) => {
                 <div>
                     <h2>{product.name}</h2>
                     <h3 className="price"> {product.price}:-</h3>
-                    <button onClick={handleAdd}>Lägg till i varukorgen</button>
+                    <button onClick={handleAdd}>{!inCart ? "Lägg till i varukorgen" : "Tillagd ✔"}</button>
                 </div>
             </div>
         </div>

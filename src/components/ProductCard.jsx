@@ -11,6 +11,7 @@ const Productcard = ({ product }) => {
     const plusQuantity = useCartStore((state) => state.plusQuantity);
     const isAdmin = useAdminStore((state) => state.isAdmin);
     const setProductList = useProductsStore((state) => state.setProductList);
+    const inCart = cart ? cart.some(item => item.id == product.id) : false;
 
     const handleAdd = () => {
         let cartItem = {
@@ -27,7 +28,6 @@ const Productcard = ({ product }) => {
                 return;
             }
         }
-
         addCartItem(cartItem);
     };
 
@@ -45,7 +45,7 @@ const Productcard = ({ product }) => {
                 </NavLink>
                 <h3 className="price">{product.price} SEK</h3>
                 {!isAdmin ? (
-                    <button onClick={handleAdd}>Lägg till</button>
+                    <button onClick={handleAdd}>{!inCart ? "Lägg till" : "Tillagd ✔"}</button>
                 ) : (
                     <div>
                         <button onClick={() => deleteProduct(product.id, setProductList)}>Ta bort</button>
