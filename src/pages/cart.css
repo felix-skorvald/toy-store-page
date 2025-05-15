@@ -46,6 +46,10 @@
                 justify-content: space-between;
             }
 
+            &>div:first-child {
+                margin-bottom: 1rem;
+            }
+
             .trash-button {
                 padding: 0;
                 background-color: transparent;
@@ -107,6 +111,7 @@
             border-radius: 1rem;
             padding: 1rem;
             align-self: center;
+            cursor: pointer;
 
             &:hover {
                 background-color: #003399;
@@ -131,6 +136,10 @@
         flex-direction: column;
 
 
+    }
+
+    .quantity-buttons {
+        width: 10rem;
     }
 
     .name-price {

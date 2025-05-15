@@ -1,4 +1,5 @@
 import { useCartStore } from "../data/store.js"
+import { useNavigate } from "react-router";
 import "./cart.css"
 import trashIcon from "../assets/tabler_trash-filled.svg"
 const Cart = () => {
@@ -8,6 +9,7 @@ const Cart = () => {
     const plusQuantity = useCartStore((state) => state.plusQuantity)
     const minusQuantity = useCartStore((state) => state.minusQuantity)
     const removeFromCart = useCartStore((state) => state.removeFromCart)
+    const navigate = useNavigate()
 
     const handleSub = (id) => {
         minusQuantity(id)
@@ -20,7 +22,7 @@ const Cart = () => {
     }
 
 
-    return (
+    return cart.length > 0 ? (
         <div className="cart">
             <div className="cart-container">
                 <h2>Varukorg</h2>
@@ -53,7 +55,12 @@ const Cart = () => {
                 </div>
             </div >
         </div >
-    );
+    ) : (<div className="cart">
+        <div className="cart-container">
+            <h2>Din varukorg är tom</h2>
+            <button className="buy-button" onClick={() => navigate("/products")}>Klicka här för att handla</button>
+        </div>
+    </div>)
 };
 
 export default Cart;

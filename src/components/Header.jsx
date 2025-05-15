@@ -28,10 +28,14 @@ const Header = () => {
                 <NavLink to="/products/addnew">Lägg till ny produkt</NavLink>
             )}
             {!isAdmin ? (
-                <NavLink to="/cart" className="cart-icon">
-                    <img src={cartIcon} alt="cart" />
-                    {cart.length > 0 ? <p className="cart-counter">{cart.reduce((total, item) => total + item.quantity, 0)}</p> : ""}
-                </NavLink>
+                cart.length > 0 ? (
+                    <NavLink to="/cart" className="cart-icon">
+                        <img src={cartIcon} alt="cart" />
+                        {cart.length > 0 ? <p className="cart-counter">{cart.reduce((total, item) => total + item.quantity, 0)}</p> : ""}
+                    </NavLink>
+                ) : (
+                    <img src={cartIcon} alt="cart" style={{ filter: "opacity(0.5)" }} />
+                )
             ) : (
                 <button onClick={handleLogOut}>Logga ut</button>
             )}
