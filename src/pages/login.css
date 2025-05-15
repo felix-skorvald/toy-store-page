@@ -9,6 +9,16 @@
         border-radius: 10px;
         background-color: #fff;
         font-size: larger;
+        display: flex;
+        flex-direction: column;
+
+        .error-message {
+            color: rgb(196, 0, 0);
+            font-size: small;
+            align-self: flex-end;
+            position: absolute;
+
+        }
 
         &>div {
             display: flex;
@@ -37,5 +47,19 @@
                 cursor: pointer;
             }
         }
+    }
+}
+
+@media (max-width: 400px) {
+    .login-container>div {
+        flex-direction: column;
+
+
+    }
+
+    .login .login-container .error-message {
+        position: relative;
+        align-self: center;
+        margin-bottom: 1rem;
     }
 }

@@ -1,29 +1,48 @@
 import React, { useState } from "react";
 import { useAdminStore } from "../data/store.js";
+import { useNavigate } from "react-router";
 import "./login.css"
 
 const Login = () => {
     const toggleAdmin = useAdminStore((state) => state.toggleAdmin);
     const isAdmin = useAdminStore((state) => state.isAdmin);
+    const navigate = useNavigate()
+    const [error, setError] = useState("");
     const [credentials, setCredentials] = useState({
         username: "",
         password: "",
     });
 
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setCredentials({ ...credentials, [name]: value });
+        if (e.key === "Enter") {
+            handleLogin();
+        }
     };
+
+    const handleEnter = e => {
+        if (e.key === "Enter") {
+            handleLogin();
+        }
+    }
 
     const handleLogin = (e) => {
         const acceptedLogin = { username: "admin", password: "password" };
-        if (JSON.stringify(credentials) == JSON.stringify(acceptedLogin)) {
+        if (credentials.username == acceptedLogin.username && credentials.password == acceptedLogin.password) {
             toggleAdmin();
+            navigate("/products")
             console.log("du e admin");
-            console.log("Logging in with:", credentials);
         } else {
-            console.log("Logging in with:", credentials);
-            console.log("FEL");
+            if (credentials.username == "" || credentials.password == "") {
+                setError("Vänligen fyll i båda fälten")
+                return
+            }
+
+            setError("Vänligen försök igen")
+
+
         }
     };
 
@@ -40,6 +59,7 @@ const Login = () => {
                         name="username"
                         value={credentials.username}
                         onChange={handleChange}
+                        onKeyDown={handleEnter}
                     />
                 </div>
                 <div>
@@ -50,15 +70,22 @@ const Login = () => {
                         name="password"
                         value={credentials.password}
                         onChange={handleChange}
+                        onKeyDown={handleEnter}
                     />
                 </div>
+                <p className="error-message">
+                    {error}
+                </p>
                 <button onClick={handleLogin}>Logga in</button>
-
 
             </div>
         </div>
     ) : (
-        <div className="login">inloggad</div>
+        <div className="login">
+            <div className="login-container">
+                <h2>Inloggad</h2>
+            </div>
+        </div>
     );
 };
 

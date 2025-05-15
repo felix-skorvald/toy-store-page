@@ -5,6 +5,7 @@ import { useProductsStore } from "../data/store.js";
 import { useCartStore } from "../data/store.js";
 import { addNewValidation } from "../data/validation.js";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const ProductView = ({ product }) => {
     const isAdmin = useAdminStore((state) => state.isAdmin);
@@ -13,6 +14,7 @@ const ProductView = ({ product }) => {
     const addCartItem = useCartStore((state) => state.addCartItem);
     const plusQuantity = useCartStore((state) => state.plusQuantity);
     const inCart = cart ? cart.some(item => item.id == product.id) : false;
+    const navigate = useNavigate()
 
     const [edited, setEdited] = useState({
         name: product.name,
@@ -69,6 +71,7 @@ const ProductView = ({ product }) => {
         setErrors({});
         editProduct(product.id, edited);
         console.log("Product updated:", edited);
+        navigate("/products")
     };
 
 

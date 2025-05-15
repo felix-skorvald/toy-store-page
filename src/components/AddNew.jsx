@@ -2,13 +2,14 @@ import { useAdminStore } from "../data/store";
 import { useProductsStore } from "../data/store.js";
 import { addNewProduct } from "../data/crud.js";
 import { useState } from "react";
-
+import { useNavigate } from "react-router";
 import { addNewValidation } from "../data/validation.js";
 
 
 const AddNew = () => {
     const isAdmin = useAdminStore((state) => state.isAdmin);
     const categories = useProductsStore((state) => state.categoryList);
+    const navigate = useNavigate()
     const [newProduct, setNewProduct] = useState({
         name: "",
         img: "",
@@ -61,6 +62,7 @@ const AddNew = () => {
         setErrors({});
         console.log("Product added:", newProduct);
         addNewProduct(newProduct);
+        navigate("/products")
     };
 
     return !isAdmin ? (
