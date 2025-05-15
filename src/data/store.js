@@ -36,17 +36,30 @@ const useCartStore = create((set) => ({
             cart: [...state.cart, item]
         })),
     plusQuantity: (id) =>
+        set((state) => ({
+            cart: state.cart.map((item) =>
+                item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+            ),
+        })),
+
+    minusQuantity: (id) =>
         set((state) => {
-            const index = state.cart.findIndex((item) => item.id === id);
-            if (index !== -1) {
-                state.cart[index].quantity++;
-                return { cart: [...state.cart] };
-            } else {
-                return { cart: [...state.cart, { id, quantity: 1 }] };
-            }
+            const updatedCart = state.cart
+                .map((item) =>
+                    item.id === id
+                        ? { ...item, quantity: Math.max(0, item.quantity - 1) }
+                        : item
+                )
+                .filter((item) => item.quantity > 0);
+            return { cart: updatedCart };
         }),
+
     emptyCart: () => set({ cart: [] }),
 
+    removeFromCart: (id) =>
+        set((state) => ({
+            cart: state.cart.filter((item) => item.id !== id),
+        })),
 
 }));
 
