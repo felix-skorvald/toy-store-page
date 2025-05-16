@@ -34,8 +34,8 @@ const Productcard = ({ product }) => {
     return (
         <div className="product-card" key={product.id}>
             <div className="img-container">
-                {isAdmin ? <img src={penIcon} alt="Edit icon" className="edit-icon" /> : ""}
                 <NavLink to={`/products/${product.id}`}>
+                    {isAdmin ? <img src={penIcon} alt="Edit icon" className="edit-icon" /> : ""}
                     <img src={product.img} />
                 </NavLink>
             </div>
