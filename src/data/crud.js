@@ -62,4 +62,17 @@ async function deleteProduct(productId, setProductList) {
     getProducts(setProductList);
 }
 
-export { getProducts, getCategories, editProduct, addNewProduct, deleteProduct };
+async function addNewCategory(newCategory) {
+    try {
+        const categoryCollection = collection(db, "categories");
+
+        const newCategoryRef = await addDoc(categoryCollection, newCategory);
+
+        console.log("Ketegori uppladdad med ID: ", newCategoryRef.id);
+    } catch (error) {
+        console.error("Fel vid uppladdninging ", error);
+        throw error;
+    }
+}
+
+export { getProducts, getCategories, editProduct, addNewProduct, deleteProduct, addNewCategory };

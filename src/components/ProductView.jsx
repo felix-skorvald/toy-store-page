@@ -1,10 +1,10 @@
 import "./productview.css";
 import { useAdminStore } from "../data/store.js";
-import { editProduct } from "../data/crud.js";
+import { editProduct, addNewCategory, getCategories } from "../data/crud.js";
 import { useProductsStore } from "../data/store.js";
 import { useCartStore } from "../data/store.js";
 import { addNewValidation } from "../data/validation.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 const ProductView = ({ product }) => {
@@ -15,6 +15,9 @@ const ProductView = ({ product }) => {
     const plusQuantity = useCartStore((state) => state.plusQuantity);
     const inCart = cart ? cart.some(item => item.id == product.id) : false;
     const navigate = useNavigate()
+    const setCategoryList = useProductsStore((state) => state.setCategoryList);
+    const [newCategory, setNewCategory] = useState("")
+    const [loading, setLoading] = useState("Spara ändringar")
 
     const [edited, setEdited] = useState({
         name: product.name,
@@ -25,6 +28,10 @@ const ProductView = ({ product }) => {
     });
 
     const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+        getCategories(setCategoryList);
+    }, [categories]);
 
     const handleInputChange = (e) => {
         const { id, value } = e.target;
@@ -68,6 +75,7 @@ const ProductView = ({ product }) => {
             return;
         }
 
+        setLoading("Laddar upp...")
         setErrors({});
         editProduct(product.id, edited);
         console.log("Product updated:", edited);
@@ -94,15 +102,21 @@ const ProductView = ({ product }) => {
         addCartItem(cartItem);
     };
 
+    const handleAddNewCategory = () => {
+        const newCatToAdd = { name: newCategory }
+
+        addNewCategory(newCatToAdd)
+    }
+
     return !isAdmin ? (
         <div className="product-view">
             <div className="product-container">
                 <div>
                     <img src={product.img} alt={product.name} />
-                    <p>{product.description}</p>
                 </div>
                 <div>
                     <h2>{product.name}</h2>
+                    <p>{product.description}</p>
                     <h3 className="price"> {product.price}:-</h3>
                     <button onClick={handleAdd}>{!inCart ? "Lägg till i varukorgen" : "Tillagd ✔"}</button>
                 </div>
@@ -175,9 +189,14 @@ const ProductView = ({ product }) => {
                                 </label>
                             </div>
                         ))}
+                        <div className="new-cat-container">
+                            <input type="text" value={newCategory} placeholder="Ny kategori" onChange={(e) => setNewCategory(e.target.value)} />
+
+                            <button onClick={() => handleAddNewCategory()}>Lägg till</button>
+                        </div>
                     </div>
 
-                    <button onClick={handleSave}>Spara ändringar</button>
+                    <button onClick={handleSave}>{loading}</button>
                 </div>
             </div>
         </div>

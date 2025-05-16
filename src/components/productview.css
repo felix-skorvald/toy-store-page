@@ -8,7 +8,7 @@
 
     .product-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         background-color: rgb(255, 255, 255);
         padding: 1rem;
         border-radius: 10px;
@@ -76,6 +76,7 @@
             background-color: rgb(202, 202, 202);
             display: flex;
             justify-content: space-between;
+
             flex-wrap: wrap;
 
             .category-button {
@@ -86,6 +87,7 @@
                 cursor: pointer;
                 flex-grow: 1;
                 text-align: center;
+                padding-bottom: 0.5rem;
 
                 label {
                     cursor: pointer;
@@ -93,6 +95,26 @@
                     font-weight: 400;
                 }
 
+            }
+
+            .new-cat-container {
+                flex-grow: 1;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                input {
+                    border: none;
+                    flex-grow: 1;
+                }
+
+                button {
+                    margin: 0;
+                    padding: 0.5rem;
+                    font-size: medium;
+                    border-radius: 5px;
+                    background-color: rgb(161, 161, 161);
+                }
             }
         }
     }
