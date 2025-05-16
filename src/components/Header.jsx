@@ -2,6 +2,7 @@ import "./header.css";
 import { useAdminStore } from "../data/store";
 import toyIcon from "../assets/mdi_child-toy.svg";
 import cartIcon from "../assets/solar_cart-bold.svg"
+import logIcon from "../assets/bx_log-out.svg"
 import { NavLink } from "react-router";
 import { useCartStore } from "../data/store.js";
 import { useEffect, useState } from "react";
@@ -37,7 +38,7 @@ const Header = () => {
                     <img src={cartIcon} alt="cart" style={{ filter: "opacity(0.5)" }} />
                 )
             ) : (
-                <button onClick={handleLogOut}>Logga ut</button>
+                <button onClick={handleLogOut} className="log-out-icon"><img src={logIcon} alt="Log out icon" /></button>
             )}
         </header>
     );
